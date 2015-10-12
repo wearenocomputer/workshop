@@ -198,7 +198,7 @@ void ofApp::backgroundLearning(){
             // Mix the grayscale image with background
             // to get a smoother transfer (trails)
             
-            float result = (bg.b * 0.965) + (gray.b * 0.035);
+            float result = (bg.b * 0.9) + (gray.b * 0.1);
             
             background.setColor(x, y, ofColor(result));
             

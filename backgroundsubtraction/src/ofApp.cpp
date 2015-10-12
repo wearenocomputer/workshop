@@ -10,7 +10,7 @@ void ofApp::setup(){
     
     width = 320;
     height = 240;
-    threshold = 60;
+    threshold = 30;
 
     // Initialize grabber
     // and allocate ofImages
@@ -134,7 +134,7 @@ void ofApp::backgroundLearning(){
             // Mix the grayscale image with background
             // to get a smoother transfer (trails)
             
-            float result = (bg.b * 0.99) + (gray.b * 0.01);
+            float result = (bg.b * 0.9) + (gray.b * 0.1);
             
             background.setColor(x, y, ofColor(result));
             
