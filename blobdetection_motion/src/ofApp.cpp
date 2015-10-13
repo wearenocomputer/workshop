@@ -172,7 +172,7 @@ void ofApp::debugDraw(){
     difference.draw(0, 540, 320, 240);
     contour.draw(0, 540, 320, 240);
     
-    ofDrawBitmapString("THRESHOLD: " + ofToString(threshold) + "\nuse up/down keys to change\n\nPRE-PROCESS\npress 1 to 3 to toggle filters", 0, 810);
+    ofDrawBitmapString("THRESHOLD: " + ofToString(threshold) + "\nuse up/down keys to change\n\nPRE-PROCESS\npress 1 to 3 to toggle filters\n\nToggle 4 to make it breathe", 0, 810);
     ofPopMatrix();
     
 }
