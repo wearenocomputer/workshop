@@ -8,7 +8,8 @@ void ofApp::setup(){
     
     // Set params
     
-    threshold = 20;
+    threshold = 30;
+    range = 20;
     dilate = false;
     erode = false;
     blur = false;
@@ -20,6 +21,9 @@ void ofApp::setup(){
     grabber.initGrabber(320, 240);
     
     rgb.allocate(grabber.width, grabber.height);
+    background.allocate(grabber.width, grabber.height);
+    grayscale.allocate(grabber.width, grabber.height);
+    roi.allocate(grabber.width, grabber.height);
     red.allocate(grabber.width, grabber.height);
     green.allocate(grabber.width, grabber.height);
     blue.allocate(grabber.width, grabber.height);
@@ -51,6 +55,14 @@ void ofApp::update(){
         
         rgb.convertToGrayscalePlanarImages(red, green, blue);
 
+        // Convert to grayscale and get difference
+        // We only track colors inside our ROI
+        
+        grayscale = rgb;
+        
+        roi.absDiff(background, grayscale);
+        roi.threshold(threshold);
+
         // Set base channel to
         // calculate difference
         
@@ -63,15 +75,22 @@ void ofApp::update(){
         // Get min & max
         // offset values
         
-        int min = color.r - threshold;
-        int max = color.r + threshold;
+        int min = color.r - range;
+        int max = color.r + range;
         
         // Loop through all pixels
         // and calculate difference
         
         for(int i=0; i<grabber.width*grabber.height; i++){
             
-            difference.getPixels()[i] = ofInRange(pixels[i], min, max) ? 255 : 0;
+            int result = ofInRange(pixels[i], min, max) ? 255 : 0;
+            
+            // Check if the result is inside our ROI
+            // and push the result to our pixel array
+            
+            result = roi.getPixels()[i] == 0 ? 0 : result;
+            
+            difference.getPixels()[i] = result;
             
         }
         
@@ -97,13 +116,11 @@ void ofApp::draw(){
     
     ofPushMatrix();
     ofPushStyle();
-    ofSetLineWidth(3);
-    
-    //ofSetColor(255, 255, 255, 175);
+    ofSetLineWidth(2);
+    //ofSetColor(255, 255, 255, 200);
     grabber.draw(width, 0, -width, height);
     //ofSetColor(255);
     contour.draw(0, 0, width, height);
-    
     ofPopStyle();
     ofPopMatrix();
     
@@ -119,11 +136,7 @@ void ofApp::debugDraw(){
     ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 0, 0);
     
     rgb.draw(0, 20, 160, 120);
-    
-    ofPushStyle();
-    ofSetColor(color);
-    ofRect(180, 20, 160, 120);
-    ofPopStyle();
+    roi.draw(180, 20, 160, 120);
     
     ofPushStyle();
     ofSetColor(255, 0, 0);
@@ -140,9 +153,14 @@ void ofApp::debugDraw(){
     blue.draw(0, 440, 160, 120);
     ofPopStyle();
     
-    difference.draw(180, 160, 160, 120);
+    ofPushStyle();
+    ofSetColor(color);
+    ofRect(180, 160, 160, 120);
+    ofPopStyle();
     
-    ofDrawBitmapString("THRESHOLD: " + ofToString(threshold) + "\nuse up/down keys to change\n\nPRE-PROCESS\npress 1 to 3 to toggle filters\n\nBASE CHANNEL: " + channel + "\npress 4 to 6 to toggle channel", 180, 315);
+    difference.draw(180, 300, 160, 120);
+
+    ofDrawBitmapString("THRESHOLD: " + ofToString(threshold) + "\nuse up/down keys to change\n\nRANGE: " + ofToString(range) + "\nuse left/right keys to change\n\nPRE-PROCESS\npress 1 to 3 to toggle filters\n\nBASE CHANNEL: " + channel + "\npress 4 to 6 to toggle channel", 180, 455);
     ofPopMatrix();
     
 }
@@ -150,8 +168,11 @@ void ofApp::debugDraw(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     
+    if(key == ' ') background = grayscale;
     if(key == OF_KEY_DOWN) threshold--;
     if(key == OF_KEY_UP) threshold++;
+    if(key == OF_KEY_LEFT) range--;
+    if(key == OF_KEY_RIGHT) range++;
     
     if(key == '1') dilate = !dilate;
     if(key == '2') erode = !erode;

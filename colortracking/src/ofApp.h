@@ -31,12 +31,16 @@ public:
     string channel;
     
     float threshold;
+    float range;
     
     ofColor color;
     
     ofVideoGrabber grabber;
     
     ofxCvColorImage rgb;
+    ofxCvGrayscaleImage background;
+    ofxCvGrayscaleImage grayscale;
+    ofxCvGrayscaleImage roi;
     ofxCvGrayscaleImage red;
     ofxCvGrayscaleImage green;
     ofxCvGrayscaleImage blue;
