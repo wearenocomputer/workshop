@@ -10,10 +10,10 @@ void ofApp::setup(){
     
     threshold = 30;
     range = 20;
+    subtraction = false;
     dilate = false;
     erode = false;
     blur = false;
-    channel = "red";
 
     // Initialize grabber and
     // allocate OpenCv images
@@ -55,40 +55,34 @@ void ofApp::update(){
         
         rgb.convertToGrayscalePlanarImages(red, green, blue);
 
-        // Convert to grayscale and get difference
-        // We only track colors inside our ROI
+        // Convert to grayscale
         
         grayscale = rgb;
+
+        // Perform background subtraction
+        // We only track colors inside our ROI
         
         roi.absDiff(background, grayscale);
         roi.threshold(threshold);
 
-        // Set base channel to
-        // calculate difference
-        
-        unsigned char *pixels;
-        
-        if(channel == "red") pixels = red.getPixels();
-        if(channel == "green") pixels = green.getPixels();
-        if(channel == "blue") pixels = blue.getPixels();
-        
-        // Get min & max
-        // offset values
-        
-        int min = color.r - range;
-        int max = color.r + range;
-        
         // Loop through all pixels
         // and calculate difference
         
+        ofColor min = ofColor(color - range);
+        ofColor max = ofColor(color + range);
+        
         for(int i=0; i<grabber.width*grabber.height; i++){
             
-            int result = ofInRange(pixels[i], min, max) ? 255 : 0;
+            bool hasR = ofInRange(red.getPixels()[i], min.r, max.r);
+            bool hasG = ofInRange(green.getPixels()[i], min.g, max.g);
+            bool hasB = ofInRange(blue.getPixels()[i], min.b, max.b);
             
-            // Check if the result is inside our ROI
-            // and push the result to our pixel array
+            int result = hasR && hasG && hasB ? 255 : 0;
             
-            result = roi.getPixels()[i] == 0 ? 0 : result;
+            // If the result is not inside
+            // our ROI, color the pixel black
+            
+            if(subtraction) result = roi.getPixels()[i] == 0 ? 0 : result;
             
             difference.getPixels()[i] = result;
             
@@ -136,7 +130,7 @@ void ofApp::debugDraw(){
     ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 0, 0);
     
     rgb.draw(0, 20, 160, 120);
-    roi.draw(180, 20, 160, 120);
+    if(subtraction) roi.draw(180, 20, 160, 120);
     
     ofPushStyle();
     ofSetColor(255, 0, 0);
@@ -160,7 +154,7 @@ void ofApp::debugDraw(){
     
     difference.draw(180, 300, 160, 120);
 
-    ofDrawBitmapString("THRESHOLD: " + ofToString(threshold) + "\nuse up/down keys to change\n\nRANGE: " + ofToString(range) + "\nuse left/right keys to change\n\nPRE-PROCESS\npress 1 to 3 to toggle filters\n\nBASE CHANNEL: " + channel + "\npress 4 to 6 to toggle channel", 180, 455);
+    ofDrawBitmapString("THRESHOLD: " + ofToString(threshold) + "\nuse up/down keys to change\n\nCOLOR RANGE: " + ofToString(range) + "\nuse left/right keys to change\n\nPRE-PROCESS\npress 1 to 3 to toggle filters\n\nBG SUBTRACTION: "+ (subtraction == 0 ? "false" : "true") +"\npress 4 to toggle", 180, 455);
     ofPopMatrix();
     
 }
@@ -177,10 +171,7 @@ void ofApp::keyPressed(int key){
     if(key == '1') dilate = !dilate;
     if(key == '2') erode = !erode;
     if(key == '3') blur = !blur;
-    
-    if(key == '4') channel = "red";
-    if(key == '5') channel = "green";
-    if(key == '6') channel = "blue";
+    if(key == '4') subtraction = !subtraction;
 
 }
 

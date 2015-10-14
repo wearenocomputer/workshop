@@ -24,11 +24,10 @@ public:
     //----------------------------------------------------------
 
     
+    bool subtraction;
     bool dilate;
     bool erode;
     bool blur;
-    
-    string channel;
     
     float threshold;
     float range;
