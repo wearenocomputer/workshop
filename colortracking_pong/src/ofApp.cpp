@@ -159,7 +159,7 @@ void ofApp::draw(){
     ofPushMatrix();
     ofPushStyle();
     
-    ofSetColor(255, 255, 255, 25);
+    ofSetColor(255, 255, 255, 100);
     grabber.draw(width, 0, -width, height);
     ofSetColor(255);
     
