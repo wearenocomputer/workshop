@@ -4,7 +4,7 @@
 void ofApp::setup(){
     
     ofSetWindowTitle("Slitscan Clock");
-    ofBackground(33, 33, 33);
+    ofBackground(33);
     
     // Init grabber
     

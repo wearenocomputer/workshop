@@ -4,7 +4,7 @@
 void ofApp::setup(){
     
     ofSetWindowTitle("Color Tracking Pong");
-    ofBackground(33, 33, 33);
+    ofBackground(33);
     
     // Set params
     

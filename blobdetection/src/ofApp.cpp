@@ -4,7 +4,7 @@
 void ofApp::setup(){
     
     ofSetWindowTitle("Blob Detection example");
-    ofBackground(33, 33, 33);
+    ofBackground(33);
     
     // Set params
     
