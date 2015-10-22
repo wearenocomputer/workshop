@@ -1,4 +1,7 @@
 # Let Me Take a Selfie — workshop
+    
+    
+![alt tag](https://c2.staticflickr.com/8/7059/6893712058_67c0c76e83_o.jpg)    
 
 Using camera input is a very common strategy when working in the field of interactive installations and creative coding. The hardware is relatively cheap and it allows one to provide immediate feedback on user interaction.
 
