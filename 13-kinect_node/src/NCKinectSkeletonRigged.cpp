@@ -107,34 +107,27 @@ void NCKinectSkeletonRigged::updateSkeleton(ofxUserGenerator &usergen,ofxTracked
 }
 
 void NCKinectSkeletonRigged::rotateNodeX(string nodename, float degrees) {
-    
-    
     if (findBoneWithRegularName(nodename)!=NULL) {
         ofMatrix4x4 rot;
         rot.makeRotationMatrix(degrees, 1, 0, 0);
         findBoneWithRegularName(nodename)->localrotation = rot;
     }
-
 }
 
 void NCKinectSkeletonRigged::rotateNodeY(string nodename, float degrees) {
     if (findBoneWithRegularName(nodename)!=NULL) {
         ofMatrix4x4 rot;
         rot.makeRotationMatrix(degrees, 0, 1, 0);
-    
         findBoneWithRegularName(nodename)->localrotation = rot;
   }
-    
 }
 
 void NCKinectSkeletonRigged::rotateNodeZ(string nodename, float degrees) {
     if (findBoneWithRegularName(nodename)!=NULL) {
         ofMatrix4x4 rot;
         rot.makeRotationMatrix(degrees, 0, 0, 1);
-    
         findBoneWithRegularName(nodename)->localrotation = rot;
     }
-
 }
 
 void NCKinectSkeletonRigged::resetNodesRotation() {

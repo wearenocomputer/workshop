@@ -94,10 +94,4 @@ public:
         ofDrawAxis(100);
         
     }
-    
-private:
-    
-   
-    
-
 };
