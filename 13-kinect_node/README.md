@@ -1,8 +1,5 @@
-# Let Me Take a Selfie — workshop
+# Kinect node — example
     
-   
-        
-![Kinect Node — example]   
 
 Using camera input is a very common strategy when working in the field of interactive installations and creative coding. The hardware is relatively cheap and it allows one to provide immediate feedback on user interaction.
 
