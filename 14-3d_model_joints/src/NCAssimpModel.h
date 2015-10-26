@@ -13,7 +13,6 @@
 #include "assimp.h"
 #include "aiScene.h"
 #include "NCBone.h"
-#include "NCMesh.h"
 #include "NCAIMesh.h"
 
 class NCAssimpModel {
@@ -50,8 +49,6 @@ private:
     const aiScene* scene;
     
     vector<NCAIMesh> meshes;
-    
-    NCMesh      mymesh;
     
     const NCBone & findBoneWithName(string incname);
     

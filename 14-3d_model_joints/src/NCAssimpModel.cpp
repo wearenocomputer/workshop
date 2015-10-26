@@ -110,9 +110,7 @@ void NCAssimpModel::setup(string pathtomodel){
             meshes.push_back(mesh);
         }
     }
-    
-    //mymesh.setup(scene->mMeshes[0]);
-    //mymesh.setup(scene);
+   
 }
 
 void NCAssimpModel::update() {
@@ -122,7 +120,6 @@ void NCAssimpModel::update() {
 }
 
 void NCAssimpModel::draw() {
-     //mymesh.draw();
     for (int i=0;i<meshes.size();i++) {
         meshes[i].draw();
     }

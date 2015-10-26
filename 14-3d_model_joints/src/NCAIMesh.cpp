@@ -9,8 +9,7 @@
 #include "NCAIMesh.h"
 
 void NCAIMesh::setup(aiMesh * _mesh, const aiScene * _scene) {
-    
-    
+
     scale = 1.0f;
     
     mesh = _mesh;
