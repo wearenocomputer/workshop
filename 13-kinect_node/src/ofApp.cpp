@@ -5,15 +5,12 @@
 void ofApp::setup(){
     ofBackground(33, 33, 33);
     niContext.setup();
-    //niContext.setupUsingRecording("hammerswing.oni");
     niDepthGenerator.setup( &niContext );
     niImageGenerator.setup( &niContext );
     niUserGenerator.setup( &niContext );
     niContext.setMirror(true);
     niContext.registerViewport();
-    
     skeleton.setup();
-
 }
 
 //--------------------------------------------------------------
@@ -22,10 +19,7 @@ void ofApp::update(){
     niDepthGenerator.update();
     niImageGenerator.update();
     niUserGenerator.update();
-    
-    
     trackUser();
-
 }
 
 //--------------------------------------------------------------
