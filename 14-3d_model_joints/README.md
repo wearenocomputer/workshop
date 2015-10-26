@@ -9,4 +9,7 @@ Used add-ons:
 
 ofxAssimp
 
-[ofxUI](https://github.com/rezaali/ofxUI) 
+[ofxUI](https://github.com/rezaali/ofxUI)
+
+
+![screenshot](http://www.nocomputer.be/yescomputer/3d_skeleton_joint.png)  
