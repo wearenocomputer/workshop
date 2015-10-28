@@ -1,12 +1,12 @@
 # Face detection — example
     
 
-This example is used to demonstrate face detection.
-It's a bare bone example implementing OpenCV function detectMultiScale
-For now it is OSX only because it uses ofQTKitGrabber for grabbing the webcam feed
+This example is used to demonstrate face detection.<br/>
+It's a bare bone example implementing the OpenCV function detectMultiScale.
 
-Used add-ons:
+For now it is OSX only because it uses ofQTKitGrabber for grabbing the webcam feed.<br/>
 
+Used add-ons:<br/>
 ofxNetwork<br/>
 ofxOpenCv<br/>
 ofxXmlSettings<br/>
