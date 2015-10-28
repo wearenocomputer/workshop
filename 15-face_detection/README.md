@@ -7,17 +7,12 @@ For now it is OSX only because it uses ofQTKitGrabber for grabbing the webcam fe
 
 Used add-ons:
 
-ofxNetwork
-
-ofxOpenCv
-
-ofxXmlSettings
-
-[ofxUI](https://github.com/rezaali/ofxUI)
-
-[ofxCv](https://github.com/kylemcdonald/ofxCv)
-
-beware, if you are using Openframeworks v0.8.4 use this version of ofxCv:
+ofxNetwork<br/>
+ofxOpenCv<br/>
+ofxXmlSettings<br/>
+[ofxUI](https://github.com/rezaali/ofxUI)<br/>
+[ofxCv](https://github.com/kylemcdonald/ofxCv)<br/>
+beware, if you are using Openframeworks v0.8.4 use this version of ofxCv:<br/>
 [ofxCv v0.8.4](https://github.com/kylemcdonald/ofxCv/tree/0.8.4)
 
 
