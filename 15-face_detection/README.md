@@ -8,8 +8,11 @@ For now it is OSX only because it uses ofQTKitGrabber for grabbing the webcam fe
 Used add-ons:
 
 ofxNetwork
+
 ofxOpenCv
+
 ofxXmlSettings
+
 [ofxUI](https://github.com/rezaali/ofxUI)
 
 [ofxCv](https://github.com/kylemcdonald/ofxCv)
