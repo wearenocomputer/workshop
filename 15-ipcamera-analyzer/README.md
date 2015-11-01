@@ -9,6 +9,6 @@ ofxOpencV<br>
 ofxXmlSettings
 
 [ofxUI](https://github.com/rezaali/ofxUI)
-
+[ofxIpVideoGrabber](https://github.com/bakercp/ofxIpVideoGrabber)
 
 ![screenshot](http://www.nocomputer.be/yescomputer/ipcam_sreenshot.png)  
