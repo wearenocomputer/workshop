@@ -1,0 +1,77 @@
+#pragma once
+
+#include "ofxOpenNIContext.h"
+#include "ofxDepthGenerator.h"
+#include "ofxImageGenerator.h"
+
+#define MAX_NUMBER_USERS 8
+
+class NCTrackedUser;
+
+class NCUserGenerator {
+    
+public:
+    
+    NCUserGenerator();
+    ~NCUserGenerator(){};
+    
+    bool				setup(ofxOpenNIContext* pContext);
+    
+    void				draw(const int width=640, const int height=480);
+    void				update();
+    
+    void				startTracking(XnUserID nID);
+    void				startPoseDetection(XnUserID nID);
+    void				stopPoseDetection(XnUserID nID);
+    void				requestCalibration(XnUserID nID);
+    bool				needsPoseForCalibration();
+    
+    void				setUseMaskPixels(bool b);
+    void				setUseCloudPoints(bool b);
+    
+    void				setSmoothing(float smooth);
+    float				getSmoothing();
+    
+    xn::UserGenerator&	getXnUserGenerator();
+    
+    void				setMaxNumberOfUsers(int nUsers);
+    int					getNumberOfTrackedUsers();
+    NCTrackedUser*		getTrackedUser(int nUserNum);
+    unsigned char *		getUserPixels(int userID = 0);
+    ofPoint				getWorldCoordinateAt(int x, int y, int userID = 0);
+    ofColor				getWorldColorAt(int x, int y, int userID = 0);
+    
+    int					getWidth();
+    int					getHeight();
+    
+    ofEvent<int>        newUser;
+    ofEvent<int>        lostUser;
+    
+private:
+    
+    void				drawUser(int nUserNum, const float wScale=1.0f, const float hScale=1.0f);
+    void				updateUserPixels();
+    void				updateCloudPoints();
+    
+    ofxOpenNIContext*	context;
+    xn::DepthGenerator	depth_generator;
+    xn::ImageGenerator	image_generator;
+    xn::UserGenerator	user_generator;
+    
+    // vars for user tracking
+    XnBool							needs_pose;
+    XnChar							calibration_pose[20];
+    NCTrackedUser *                 tracked_users[MAX_NUMBER_USERS];
+    XnUInt16						found_users;
+    int								max_num_users;
+    
+    // vars for cloud point and masking
+    XnUInt16			width, height;
+    unsigned char *		maskPixels[MAX_NUMBER_USERS+1];//including 0 as all users
+    ofPoint		*		cloudPoints[MAX_NUMBER_USERS+1];//including 0 as all users
+    ofColor		*		cloudColors[MAX_NUMBER_USERS+1];//including 0 as all users
+    bool				useMaskPixels, useCloudPoints;
+    
+    float				smoothing_factor;
+    
+};
