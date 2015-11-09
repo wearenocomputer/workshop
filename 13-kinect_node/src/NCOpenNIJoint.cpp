@@ -2,7 +2,7 @@
 //  NCKinectJoint.cpp
 //  assimp_OpenNI
 //
-//  Created by Wim Vanhenden on 30/04/13.
+//  Created by Wim Vanhenden
 //
 //
 

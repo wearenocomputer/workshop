@@ -2,7 +2,7 @@
 //  NCKinectSkeleton.cpp
 //  assimp_OpenNI
 //
-//  Created by Wim Vanhenden on 14/05/13.
+//  Created by Wim Vanhenden
 //
 //
 

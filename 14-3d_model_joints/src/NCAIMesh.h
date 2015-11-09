@@ -1,3 +1,13 @@
+//
+//  NCAIMesh.h
+//  modelComparer
+//
+//  Created by Wim Vanhenden
+//  with the amazing help of the Openframeworks forum || Kyle McDonald and Arturo
+//  http://forum.openframeworks.cc/t/posing-with-ofxassimpmodelloader/7714
+//  http://forum.openframeworks.cc/t/blender-collada-ofxassimploader-bones-not-working/12584
+
+
 #pragma once
 #include "ofMain.h"
 #include "aiConfig.h"

@@ -1,12 +1,13 @@
 //
-//  NCMesh.cpp
+//  NCAIMesh.cpp
 //  assimpFromScratch
 //
 //  Created by Wim Vanhenden on 30/05/13.
-//
-//
+//  with the amazing help of the Openframeworks forum || Kyle McDonald and Arturo
+//  http://forum.openframeworks.cc/t/posing-with-ofxassimpmodelloader/7714
+//  http://forum.openframeworks.cc/t/blender-collada-ofxassimploader-bones-not-working/12584
 
-#include "NCAIMesh.h"
+
 
 void NCAIMesh::setup(aiMesh * _mesh, const aiScene * _scene) {
 
