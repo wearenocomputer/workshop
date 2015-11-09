@@ -173,16 +173,16 @@ void ofApp::draw(){
         if(c1.a > 0 && c2.a > 0 && c3.a > 0) {
             
             ofSetColor(c1);
-            ofTriangle(v1, v2, v3);
+            ofDrawTriangle(v1, v2, v3);
             
             // Debug draw normals
             /*
             ofSetColor(ofFloatColor(n1.x, n1.y, n1.z));
-            ofLine(v1, v1 + n1*50);
+            ofDrawLine(v1, v1 + n1*50);
             ofSetColor(ofFloatColor(n2.x, n2.y, n2.z));
-            ofLine(v2, v2 + n2*50);
+            ofDrawLine(v2, v2 + n2*50);
             ofSetColor(ofFloatColor(n3.x, n3.y, n3.z));
-            ofLine(v3, v3 + n3*50);
+            ofDrawLine(v3, v3 + n3*50);
             */
             
             // Draw hair
@@ -192,7 +192,7 @@ void ofApp::draw(){
             
             for(int j=0; j<guiHair; j++){
                 
-                ofLine(start, end);
+                ofDrawLine(start, end);
                 
                 start = end;
                 end += ofVec3f(0, ofRandom(j), 0) + n1*ofRandom(j);

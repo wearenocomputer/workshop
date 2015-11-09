@@ -175,9 +175,9 @@ void ofApp::draw(){
         v2.y = ofMap(contour.blobs[1].centroid.y, 0, grabber.getHeight(), 0, height);
         
         ofSetLineWidth(10);
-        ofCircle(v1, 10);
-        ofCircle(v2, 10);
-        ofLine(v1, v2);
+        ofDrawCircle(v1, 10);
+        ofDrawCircle(v2, 10);
+        ofDrawLine(v1, v2);
     
     }
 
@@ -195,7 +195,7 @@ void ofApp::drawBall(){
     ofPushMatrix();
     ofSetCircleResolution(72);
     ofSetColor(255, 255, 0);
-    ofCircle(ball.x, ball.y, ball.z);
+    ofDrawCircle(ball.x, ball.y, ball.z);
     ofPopMatrix();
     
 }
@@ -227,7 +227,7 @@ void ofApp::debugDraw(){
     
     ofPushStyle();
     ofSetColor(color);
-    ofRect(180, 160, 160, 120);
+    ofDrawRectangle(180, 160, 160, 120);
     ofPopStyle();
     
     difference.draw(180, 300, 160, 120);

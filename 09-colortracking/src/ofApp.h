@@ -37,6 +37,7 @@ public:
     ofVideoGrabber grabber;
     
     ofxCvColorImage rgb;
+    
     ofxCvGrayscaleImage background;
     ofxCvGrayscaleImage grayscale;
     ofxCvGrayscaleImage roi;

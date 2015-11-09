@@ -45,7 +45,7 @@ void ofApp::update(){
         
         rgb.setFromPixels(grabber.getPixels(), grabber.getWidth(), grabber.getHeight());
         rgb.mirror(false, true);
-        
+
         if(dilate) rgb.dilate();
         if(erode) rgb.erode();
         if(blur) rgb.blur(11);
@@ -93,7 +93,7 @@ void ofApp::update(){
         // Find blobs in the diffrence image
         // input, min_size, max_size, how many?, find holes?
         
-        contour.findContours(difference, 250, grabber.getWidth()*grabber.getHeight(), 3, false);
+        contour.findContours(difference, 250, grabber.getWidth()*grabber.getHeight(), 1, false);
         
     }
 
@@ -149,7 +149,7 @@ void ofApp::debugDraw(){
     
     ofPushStyle();
     ofSetColor(color);
-    ofRect(180, 160, 160, 120);
+    ofDrawRectangle(180, 160, 160, 120);
     ofPopStyle();
     
     difference.draw(180, 300, 160, 120);

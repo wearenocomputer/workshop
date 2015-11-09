@@ -97,9 +97,9 @@ void Flock::draw() {
         
         ofNoFill();
         ofSetColor(1, random, random * 0.75);
-        ofCircle( particles[i].position, particles[i].mass);
+        ofDrawCircle( particles[i].position, particles[i].mass);
         ofFill();
-        ofCircle( particles[i].position, particles[i].mass * 0.3);
+        ofDrawCircle( particles[i].position, particles[i].mass * 0.3);
         
     }
     
@@ -109,7 +109,7 @@ void Flock::draw() {
     for(int i=0; i<attractors.size(); ++i) {
         
         ofFill();
-        ofCircle(attractors[i].position,attractors[i].mass * .1);
+        ofDrawCircle(attractors[i].position,attractors[i].mass * .1);
         
     }
     

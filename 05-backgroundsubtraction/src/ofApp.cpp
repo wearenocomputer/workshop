@@ -48,7 +48,7 @@ void ofApp::getRGBPixels(){
     // Get raw pixel data and
     // draw it into an ofImage
     
-    unsigned char *pixels = grabber.getPixels();
+    ofPixels pixels = grabber.getPixels();
     for(int i=0; i<width*height*3; i+=3){
         
         float r = pixels[i];

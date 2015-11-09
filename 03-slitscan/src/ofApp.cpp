@@ -59,7 +59,7 @@ void ofApp::draw(){
     ofPushMatrix();
     ofTranslate(360, 50);
     
-    fbo.draw(0, 0, 1024, 240);
+    fbo.draw(0, 0, 768, 240);
     
     ofPopMatrix();
     

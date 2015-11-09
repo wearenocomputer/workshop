@@ -188,9 +188,9 @@ void ofApp::draw(){
         // and draw the mesh
         //mesh.drawWireframe();
         
-        fbo.getTextureReference().bind();
+        fbo.getTexture().bind();
         mesh.draw();
-        fbo.getTextureReference().bind();
+        fbo.getTexture().unbind();
 
     }
     

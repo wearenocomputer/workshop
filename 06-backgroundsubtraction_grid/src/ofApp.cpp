@@ -111,7 +111,7 @@ void ofApp::getRGBPixels(){
     // Get raw pixel data and
     // draw it into an ofImage
     
-    unsigned char *pixels = grabber.getPixels();
+    ofPixels pixels = grabber.getPixels();
     for(int i=0; i<width*height*3; i+=3){
         
         float r = pixels[i];
@@ -234,7 +234,7 @@ void ofApp::draw(){
         ofPushMatrix();
         ofTranslate(vertex);
         ofRotateZ(ofGetFrameNum() * i * 0.25);
-        ofCircle(0, 0, vertex.z * 0.1);
+        ofDrawCircle(0, 0, vertex.z * 0.1);
         ofPopMatrix();
         
     }
@@ -248,8 +248,8 @@ void ofApp::debugDraw(){
     
     ofPushMatrix();
     ofTranslate(20, 30);
-    ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 0, 0);
     ofSetColor(255);
+    ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 0, 0);
     
     rgb.draw(0, 20, 320, 240);
     difference.draw(0, 280, 320, 240);

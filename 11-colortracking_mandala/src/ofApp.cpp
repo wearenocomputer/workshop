@@ -138,18 +138,18 @@ void ofApp::draw(){
             float alpha = radius * 255;
             
             ofSetColor(v.x*0.75, v.y*0.75, 255, alpha);
-            ofCircle(v, radius * 15);
+            ofDrawCircle(v, radius * 15);
             
             // Draw connecting lines
         
             if(p < particles.size()-1) {
                 ofSetColor(255, 255, 255, alpha);
-                ofLine(v, particles[p+1]);
+                ofDrawLine(v, particles[p+1]);
             }
             
             if(p < particles.size()-7) {
                 ofSetColor(255, 255, 255, alpha);
-                ofLine(v, particles[p+7]);
+                ofDrawLine(v, particles[p+7]);
             }
             
         }
@@ -191,7 +191,7 @@ void ofApp::debugDraw(){
     
     ofPushStyle();
     ofSetColor(color);
-    ofRect(180, 160, 160, 120);
+    ofDrawRectangle(180, 160, 160, 120);
     ofPopStyle();
     
     difference.draw(180, 300, 160, 120);
