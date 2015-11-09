@@ -10,7 +10,7 @@ In this workshop we'll talk about different strategies you can use to implement 
 
 —    
 A hands-on, full-day workshop on using camera input as a tool, previous experience is not required.    
-Attendees should have a basic knowledge of programming and [openFrameworks](http://openframeworks.cc/).
+Attendees should have a basic knowledge of programming and [openFrameworks (0.9.0)](http://openframeworks.cc/).
      
 For more information, say [hello@nocomputer.be](hello@nocomputer.be)    
 Follow us [@wearenocomputer](https://twitter.com/wearenocomputer)
