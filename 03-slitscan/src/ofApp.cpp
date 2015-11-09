@@ -39,7 +39,7 @@ void ofApp::update(){
         float offset = grabber.getWidth() * 0.5;
         
         fbo.begin();
-        grabber.getTextureReference().drawSubsection(index, 0, slice, fboSize, offset, 0, 1, grabber.getHeight());
+        grabber.getTexture().drawSubsection(index, 0, slice, fboSize, offset, 0, 1, grabber.getHeight());
         fbo.end();
         
         // Increase index or

@@ -19,10 +19,10 @@ void ofApp::setup(){
     
     grabber.initGrabber(320, 240);
     
-    rgb.allocate(grabber.width, grabber.height);
-    grayscale.allocate(grabber.width, grabber.height);
-    background.allocate(grabber.width, grabber.height);
-    difference.allocate(grabber.width, grabber.height);
+    rgb.allocate(grabber.getWidth(), grabber.getHeight());
+    grayscale.allocate(grabber.getWidth(), grabber.getHeight());
+    background.allocate(grabber.getWidth(), grabber.getHeight());
+    difference.allocate(grabber.getWidth(), grabber.getHeight());
     
     // Add some particles and
     // attractors to our flock
@@ -56,7 +56,7 @@ void ofApp::update(){
         // Get pixel data and
         // pre-process the image
         
-        rgb.setFromPixels(grabber.getPixels(), grabber.width, grabber.height);
+        rgb.setFromPixels(grabber.getPixels(), grabber.getWidth(), grabber.getHeight());
         rgb.mirror(false, true);
         
         if(dilate) rgb.dilate();
@@ -74,7 +74,7 @@ void ofApp::update(){
         
         // Find blobs - input, min_size, max_size, how many?, find holes?
         
-        contour.findContours(difference, 1000, grabber.width*grabber.height, 1, false);
+        contour.findContours(difference, 1000, grabber.getWidth()*grabber.getHeight(), 1, false);
         
         
         // Background learning
@@ -112,8 +112,8 @@ void ofApp::updateFlock(){
 
     if(contour.nBlobs>0){
         
-        float x = contour.blobs[0].centroid.x / grabber.width * ofGetWidth();
-        float y = contour.blobs[0].centroid.y / grabber.height * ofGetHeight();
+        float x = contour.blobs[0].centroid.x / grabber.getWidth() * ofGetWidth();
+        float y = contour.blobs[0].centroid.y / grabber.getHeight() * ofGetHeight();
     
         target = ofVec3f(x - ofGetWidth()*0.5, y - ofGetHeight()*0.5, 0);
         
@@ -168,11 +168,11 @@ void ofApp::debugDraw(){
     ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 0, 0);
     
     grayscale.draw(0, 20, 320, 240);
-    background.draw(0, 280, 320, 240);
-    difference.draw(0, 540, 320, 240);
-    contour.draw(0, 540, 320, 240);
+    background.draw(0, 270, 320, 240);
+    difference.draw(0, 520, 320, 240);
+    contour.draw(0, 520, 320, 240);
     
-    ofDrawBitmapString("THRESHOLD: " + ofToString(threshold) + "\nuse up/down keys to change\n\nPRE-PROCESS\npress 1 to 3 to toggle filters\n\nToggle 4 to make it breathe", 0, 810);
+    ofDrawBitmapString("THRESHOLD: " + ofToString(threshold) + "\nuse up/down keys to change\n\nPRE-PROCESS\npress 1 to 3 to toggle filters\n\nToggle 4 to make it breathe", 340, 30);
     ofPopMatrix();
     
 }

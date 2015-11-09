@@ -52,8 +52,8 @@ void ofApp::createMeshes(){
 //--------------------------------------------------------------
 void ofApp::createMesh(ofVboMesh &mesh, int segments, int scale){
     
-    float innerRadius = 60 + (100 * scale);
-    float outerRadius = 150 + (100 * scale);
+    float innerRadius = 10 + (85 * scale);
+    float outerRadius = 85 + (85 * scale);
     
     int step = 360/segments;
     int max = 360; // degrees
@@ -135,7 +135,7 @@ void ofApp::update(){
         // in our vector
         
         fbos[0].begin();
-        grabber.getTextureReference().drawSubsection(indexes[0], 0, slice, fboSize, offset, 0, 1, grabber.getHeight());
+        grabber.getTexture().drawSubsection(indexes[0], 0, slice, fboSize, offset, 0, 1, grabber.getHeight());
         fbos[0].end();
         
         // Increase index or
@@ -154,7 +154,7 @@ void ofApp::update(){
             if(indexes[0]%(2*i) == 0) {
                 
                 fbo.begin();
-                grabber.getTextureReference().drawSubsection(index, 0, slice, fboSize, offset, 0, 1, grabber.getHeight());
+                grabber.getTexture().drawSubsection(index, 0, slice, fboSize, offset, 0, 1, grabber.getHeight());
                 fbo.end();
                 
                 // Increase index or
@@ -175,7 +175,7 @@ void ofApp::draw(){
     debugDraw();
     
     ofPushMatrix();
-    ofTranslate(ofGetWidth() * 0.5, ofGetHeight() * 0.5);
+    ofTranslate(ofGetWidth() * 0.6, ofGetHeight() * 0.5);
     //ofRotateZ(ofGetFrameNum() * 0.15);
     //ofRotateX(ofGetFrameNum() * -0.15);
     

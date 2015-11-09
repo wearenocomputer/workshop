@@ -33,7 +33,7 @@ void ofApp::setup(){
     for(int y=0; y<_height; y++){
         for(int x=0; x<_width; x++){
             
-            float size = 15;
+            float size = 10;
             float _x = (x * size) - (_width * size * 0.5);
             float _y = (y * size) - (_height * size * 0.5);
             float _z = 0;
@@ -112,7 +112,7 @@ void ofApp::getRGBPixels(){
     // Get raw pixel data and
     // draw it into an ofImage
     
-    unsigned char *pixels = grabber.getPixels();
+    ofPixels pixels = grabber.getPixels();
     for(int i=0; i<width*height*3; i+=3){
         
         float r = pixels[i];

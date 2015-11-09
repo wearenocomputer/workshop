@@ -18,10 +18,10 @@ void ofApp::setup(){
     
     grabber.initGrabber(320, 240);
     
-    rgb.allocate(grabber.width, grabber.height);
-    grayscale.allocate(grabber.width, grabber.height);
-    background.allocate(grabber.width, grabber.height);
-    difference.allocate(grabber.width, grabber.height);
+    rgb.allocate(grabber.getWidth(), grabber.getHeight());
+    grayscale.allocate(grabber.getWidth(), grabber.getHeight());
+    background.allocate(grabber.getWidth(), grabber.getHeight());
+    difference.allocate(grabber.getWidth(), grabber.getHeight());
     
 }
 
@@ -37,7 +37,7 @@ void ofApp::update(){
         // Get pixel data and
         // pre-process the image
         
-        rgb.setFromPixels(grabber.getPixels(), grabber.width, grabber.height);
+        rgb.setFromPixels(grabber.getPixels(), grabber.getWidth(), grabber.getHeight());
         rgb.mirror(false, true);
         
         if(dilate) rgb.dilate();
@@ -55,7 +55,7 @@ void ofApp::update(){
         
         // Find blobs - input, min_size, max_size, how many?, find holes?
         
-        contour.findContours(difference, 2000, grabber.width*grabber.height, 3, false);
+        contour.findContours(difference, 2000, grabber.getWidth()*grabber.getHeight(), 3, false);
         
         
         // Background learning
@@ -108,7 +108,7 @@ void ofApp::debugDraw(){
     background.draw(0, 280, 320, 240);
     difference.draw(340, 280, 320, 240);
     
-    ofDrawBitmapString("THRESHOLD: " + ofToString(threshold) + "\nuse up/down keys to change\n\nPRE-PROCESS\npress 1 to 3 to toggle filters", 1020, 295);
+    ofDrawBitmapString("THRESHOLD: " + ofToString(threshold) + "\nuse up/down keys to change\n\nPRE-PROCESS\npress 1 to 3 to toggle filters", 0, 550);
     ofPopMatrix();
     
 }

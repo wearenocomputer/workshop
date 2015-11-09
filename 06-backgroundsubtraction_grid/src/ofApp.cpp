@@ -27,7 +27,7 @@ void ofApp::setup(){
     for(int y=0; y<height; y++){
         for(int x=0; x<width; x++){
             
-            float size = 5;
+            float size = 2;
             float _x = (x * size) - (width * size * 0.5);
             float _y = (y * size) - (height * size * 0.5);
             

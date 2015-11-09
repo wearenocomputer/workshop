@@ -93,7 +93,7 @@ void ofApp::update(){
                 // Get average color values and extrude along the z-axis
                 // Mix this with previous z-positions to get an easing effect
                 
-                float radius = 200 + (color.r + color.g + color.b) * 0.25;
+                float radius = 150 + (color.r + color.g + color.b) * 0.25;
             
                 float _x = (float)x/(float)width * 360 * DEG_TO_RAD;
                 float _y = (float)y/(float)height * 180 * DEG_TO_RAD;
@@ -122,7 +122,7 @@ void ofApp::getRGBPixels(){
     // Get raw pixel data and
     // draw it into an ofImage
     
-    unsigned char *pixels = grabber.getPixels();
+    ofPixels pixels = grabber.getPixels();
     for(int i=0; i<width*height*3; i+=3){
         
         float r = pixels[i];
@@ -147,7 +147,7 @@ void ofApp::draw(){
     debugDraw();
     
     ofPushMatrix();
-    ofTranslate(ofGetWidth() * 0.5, ofGetHeight() * 0.5);
+    ofTranslate(ofGetWidth() * 0.6, ofGetHeight() * 0.5);
     ofRotateY(ofGetFrameNum() * 0.3);
     //ofRotateZ(ofGetFrameNum() * 0.3);
     ofEnableDepthTest();

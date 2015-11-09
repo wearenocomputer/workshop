@@ -20,14 +20,14 @@ void ofApp::setup(){
     
     grabber.initGrabber(320, 240);
     
-    rgb.allocate(grabber.width, grabber.height);
-    background.allocate(grabber.width, grabber.height);
-    grayscale.allocate(grabber.width, grabber.height);
-    roi.allocate(grabber.width, grabber.height);
-    red.allocate(grabber.width, grabber.height);
-    green.allocate(grabber.width, grabber.height);
-    blue.allocate(grabber.width, grabber.height);
-    difference.allocate(grabber.width, grabber.height);
+    rgb.allocate(grabber.getWidth(), grabber.getHeight());
+    background.allocate(grabber.getWidth(), grabber.getHeight());
+    grayscale.allocate(grabber.getWidth(), grabber.getHeight());
+    roi.allocate(grabber.getWidth(), grabber.getHeight());
+    red.allocate(grabber.getWidth(), grabber.getHeight());
+    green.allocate(grabber.getWidth(), grabber.getHeight());
+    blue.allocate(grabber.getWidth(), grabber.getHeight());
+    difference.allocate(grabber.getWidth(), grabber.getHeight());
     
 }
 
@@ -43,7 +43,7 @@ void ofApp::update(){
         // Get pixel data and
         // pre-process the image
         
-        rgb.setFromPixels(grabber.getPixels(), grabber.width, grabber.height);
+        rgb.setFromPixels(grabber.getPixels(), grabber.getWidth(), grabber.getHeight());
         rgb.mirror(false, true);
         
         if(dilate) rgb.dilate();
@@ -71,7 +71,7 @@ void ofApp::update(){
         ofColor min = ofColor(color - range);
         ofColor max = ofColor(color + range);
         
-        for(int i=0; i<grabber.width*grabber.height; i++){
+        for(int i=0; i<grabber.getWidth()*grabber.getHeight(); i++){
             
             bool hasR = ofInRange(red.getPixels()[i], min.r, max.r);
             bool hasG = ofInRange(green.getPixels()[i], min.g, max.g);
@@ -93,7 +93,7 @@ void ofApp::update(){
         // Find blobs in the diffrence image
         // input, min_size, max_size, how many?, find holes?
         
-        contour.findContours(difference, 250, grabber.width*grabber.height, 1, false);
+        contour.findContours(difference, 250, grabber.getWidth()*grabber.getHeight(), 1, false);
         
         // Add blobs to our vector
         // and auto-remove as needed
@@ -243,21 +243,21 @@ void ofApp::mouseReleased(int x, int y, int button){
     // Map mouse positions to match
     // the rgb-image from the camera
     
-    x = ofMap(float(x), 0, ofGetWidth(), 0, grabber.width);
-    y = ofMap(float(y), 0, ofGetWidth()/4*3, 0, grabber.height);
+    x = ofMap(float(x), 0, ofGetWidth(), 0, grabber.getWidth());
+    y = ofMap(float(y), 0, ofGetWidth()/4*3, 0, grabber.getHeight());
     
     // Bail out if the mapping
     // falls outsode the image
     
-    if(x>grabber.width) return;
-    if(y>grabber.height) return;
+    if(x>grabber.getWidth()) return;
+    if(y>grabber.getHeight()) return;
 
     // Get color values
     // and cache them
     
-    int r = red.getPixels()[y*grabber.width + x];
-    int g = green.getPixels()[y*grabber.width + x];
-    int b = blue.getPixels()[y*grabber.width + x];
+    int r = red.getPixels()[y*grabber.getWidth() + x];
+    int g = green.getPixels()[y*grabber.getWidth() + x];
+    int b = blue.getPixels()[y*grabber.getWidth() + x];
     
     color = ofColor(r, g, b);
     
